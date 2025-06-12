@@ -1,11 +1,25 @@
 package com.zumba.model;
 
+import jakarta.servlet.http.Part;
+
 public class Participant {
     int pid;
     String name;
     String phone;
     String email;
     String batchTime;
+
+    public Participant(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+    public Participant(int pid, String name, String phone, String email) {
+        this.pid = pid;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
 
     public Participant(int pid, String name, String phone, String email, String batchTime) {
         this.pid = pid;
