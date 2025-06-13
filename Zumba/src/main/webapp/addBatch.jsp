@@ -1,4 +1,4 @@
-<%@ page import="com.example.model.Batch" %>
+<%@ page import="com.zumba.model.Batch" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
   Batch batch = (Batch) request.getAttribute("batch");
@@ -100,7 +100,7 @@
 <body>
   <div class="form-container">
     <h3><%= editing ? "Edit" : "Add New" %> Class Time</h3>
-    <form action="batches" method="post">
+    <form action="batch" method="post">
       <input type="hidden" name="action" value="<%= editing ? "update" : "insert" %>"/>
       <% if (editing) { %>
         <input type="hidden" name="id" value="<%= batch.getId() %>"/>
@@ -116,7 +116,7 @@
       </button>
     </form>
     <p class="back-link">
-      <a href="batches">← Back to Class Times</a>
+      <a href="batch">← Back to Class Times</a>
     </p>
   </div>
 </body>

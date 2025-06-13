@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.model.Participants" %>
+<%@ page import="com.zumba.model.Participant" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,8 +76,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Book List</h1>
+        <h1>Participant List</h1>
         <a href="participants?action=add" class="add-button">Add New Participant</a>
+        <a href="addBatch.jsp" class="add-button">Add Class Times</a>
         <table>
             <tr>
                 <th>Name</th>
@@ -87,7 +88,7 @@
                 <th>Actions</th>
             </tr>
             <%
-                List<Participant> participant = (List<Participant>) request.getAttribute("listParticipant");
+                List<Participant> participants = (List<Participant>) request.getAttribute("listParticipants");
                 if (participants != null) {
                     for (Participant participant : participants) {
             %>
@@ -103,7 +104,7 @@
                         <% } %>
                     </td>
                     <td class="action-links">
-                        <a href="participants?action=edit&id=<%= participant.getPid() %>">Edit</a>
+                        <a href="participants?action=edit&pid=<%= participant.getPid() %>">Edit</a>
                         <a href="participants?action=delete&pid=<%= participant.getPid() %>" onclick="return confirm('Are you sure you want to delete this Participant?')">Delete</a>
                     </td>
                 </tr>

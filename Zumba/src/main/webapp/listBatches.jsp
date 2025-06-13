@@ -1,4 +1,4 @@
-<%@ page import="java.util.List, com.example.model.Batch" %>
+<%@ page import="java.util.List, com.zumba.model.Batch" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -55,9 +55,9 @@
       <td><%= b.getId() %></td>
       <td><%= b.getTime() %></td>
       <td>
-        <a href="batches?action=edit&id=<%= b.getId() %>">Edit</a>
+        <a href="batch?action=edit&id=<%= b.getId() %>">Edit</a>
          |
-        <a href="batches?action=delete&id=<%= b.getId() %>" onclick="return confirm('Delete this class time?');">
+        <a href="batch?action=delete&id=<%= b.getId() %>" onclick="return confirm('Delete this class time?');">
           Delete
         </a>
       </td>
@@ -67,7 +67,7 @@
       } else {
     %>
     <tr>
-      <td colspan="4">No class times found.</td>
+      <td colspan="3">No class times found.</td>
     </tr>
     <%
       }

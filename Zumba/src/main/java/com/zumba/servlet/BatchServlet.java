@@ -41,7 +41,7 @@ public class BatchServlet extends HttpServlet {
 
             List<Batch> batch = dao.getAllBatches();
             req.setAttribute("listBatch", batch);
-            req.getRequestDispatcher("/listBatch.jsp")
+            req.getRequestDispatcher("/listBatches.jsp")
                     .forward(req, resp);
         } catch (SQLException e) {
             throw new ServletException("Database error in BatchServlet", e);

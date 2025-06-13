@@ -73,7 +73,7 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
     @Override
     public boolean updateParticipant(Participant participant) throws SQLException {
-        String sql = "UPDATE participants SET name = ?, phone = ?, email = ?, batch_id ? WHERE id = ?";
+        String sql = "UPDATE participants SET name = ?, phone = ?, email = ?, batch_id = ? WHERE id = ?";
         try (Connection c = DriverManager.getConnection(jdbcURL);
              PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setString(1, participant.getName());
@@ -99,7 +99,7 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
     @Override
     public Participant getParticipant(int pid) throws SQLException {
-        String sql = "SELECT p.id, p.name, p.phone, p.email b.time as time" +
+        String sql = "SELECT p.id, p.name, p.phone, p.email, b.time as time " +
                 "FROM participants p " +
                 "LEFT JOIN batch b ON p.batch_id = b.id " +
                 "WHERE p.id = ?";

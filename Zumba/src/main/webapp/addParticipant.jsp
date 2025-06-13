@@ -1,5 +1,5 @@
-<%@ page import="com.example.model.Participant" %>
-<%@ page import="com.example.model.Batch" %>
+<%@ page import="com.zumba.model.Participant" %>
+<%@ page import="com.zumba.model.Batch" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
@@ -103,7 +103,7 @@
     <form action="participants" method="post">
       <input type="hidden" name="action" value="<%= editing ? "update" : "insert" %>"/>
       <% if (editing) { %>
-        <input type="hidden" name="id" value="<%= participant.getId() %>"/>
+        <input type="hidden" name="pid" value="<%= participant.getPid() %>"/>
       <% } %>
 
       <label for="name">Name</label>
@@ -122,13 +122,13 @@
        value="<%= editing ? participant.getEmail() : "" %>"/>
 
       <label for="Batch">Class Time</label>
-      <select id="batch" name="batch" class="form-select">
+      <select id="batch" name="time" class="form-select">
         <option value="">-- Select Time --</option>
-        <% if (categories != null) {
-            for (Batch batch : batches) { %>
-          <option value="<%= batch.getId() %>"
-            <%= (editing && participant.getBatchTime() != null && participant.getBatchTime().equals(batch.getTime())) ? "selected" : "" %>>
-            <%= batch.getTime() %>
+        <% if (batch != null) {
+            for (Batch b : batch) { %>
+          <option value="<%= b.getId() %>"
+            <%= (editing && participant.getBatchTime() != null && participant.getBatchTime().equals(b.getTime())) ? "selected" : "" %>>
+            <%= b.getTime() %>
           </option>
         <% }
           } %>
@@ -138,7 +138,7 @@
         <%= editing ? "Update Participant" : "Add Participant" %>
       </button>
     </form>
-    <p class="back-link"><a href="books">← Back to list</a></p>
+    <p class="back-link"><a href="participants">← Back to list</a></p>
   </div>
 </body>
 </html>

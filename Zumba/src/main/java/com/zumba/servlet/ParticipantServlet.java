@@ -32,6 +32,7 @@ public class ParticipantServlet extends HttpServlet {
                 int pid = Integer.parseInt(req.getParameter("pid"));
                 participantDAO.deleteParticipant(pid);
                 resp.sendRedirect(req.getContextPath() + "/participants");
+                return;
             }
             else if ("edit".equals(action)){
                 int pid = Integer.parseInt(req.getParameter("pid"));
@@ -43,11 +44,18 @@ public class ParticipantServlet extends HttpServlet {
                         .forward(req,resp);
                 return;
             }
+            else if ("add".equals(action)) {
+                List<Batch> allBatches = batchDAO.getAllBatches();
+                req.setAttribute("allBatches", allBatches);
+                req.getRequestDispatcher("/addParticipant.jsp")
+                        .forward(req, resp);
+                return;
+            }
 
             List<Participant> participants = participantDAO.getAllParticipants();
             req.setAttribute("listParticipants", participants);
             req.getRequestDispatcher("/listParticipants.jsp")
-                    .forward(req,resp);
+                    .forward(req, resp);
         } catch (SQLException e) {
             throw new ServletException("Database error in ParticipantServlet", e);
         }
